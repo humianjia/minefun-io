@@ -42,7 +42,7 @@ function loadGame(gameIndex) {
         if (icon && game.imageUrl) {
             icon.src = game.imageUrl.replace('game_icon', 'icon');
             icon.onerror = function() {
-                this.src = 'img/icon/veckIo.jpg';
+                this.src = 'img/icon/minefun.svg';
             };
         }
     }
@@ -109,7 +109,7 @@ function loadRelatedGames() {
             card.className = 'game-card-wide';
             card.setAttribute('data-game', game.id);
             card.innerHTML = `
-                <img src="${game.imageUrl}" alt="${game.name}" onerror="this.src='img/icon/veckIo.jpg'">
+                <img src="${game.imageUrl}" alt="${game.name}" onerror="this.src='img/icon/minefun.svg'">
                 <div class="game-card-wide-title">${game.name}</div>
             `;
             card.addEventListener('click', function() {
@@ -126,7 +126,7 @@ function loadRelatedGames() {
             card.className = 'game-card';
             card.setAttribute('data-game', game.id);
             card.innerHTML = `
-                <img src="${game.imageUrl}" alt="${game.name}" onerror="this.src='img/icon/veckIo.jpg'">
+                <img src="${game.imageUrl}" alt="${game.name}" onerror="this.src='img/icon/minefun.svg'">
                 <div class="game-card-title">${game.name}</div>
             `;
             card.addEventListener('click', function() {
