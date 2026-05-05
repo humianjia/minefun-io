@@ -17,7 +17,7 @@ function loadMainGame() {
         if (icon && firstGame.imageUrl) {
             icon.src = firstGame.imageUrl.replace('game_icon', 'icon');
             icon.onerror = function() {
-                this.src = 'img/icon/veckIo.jpg';
+                this.src = 'img/icon/minefun.svg';
             };
         }
     }

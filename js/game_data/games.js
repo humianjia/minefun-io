@@ -24,7 +24,7 @@ var gamesData = [
             "resource management",
             "alliance system"
         ],
-        "iframeUrl": "https://minefun.io/",
+        "iframeUrl": "https://www.twoplayergames.org/gameframe/minefun-io",
         "gameplay": "FrontWars.io gameplay revolves around strategic territory expansion. Start with a small base, conquer adjacent territories, balance troops and workers, and build cities, ports, and defense posts. Form alliances, trade resources, and deploy naval forces and missiles to dominate the map.",
         "gameModes": [
             "Free For All",

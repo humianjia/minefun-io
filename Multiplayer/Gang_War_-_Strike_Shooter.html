@@ -17,11 +17,11 @@
     <meta name="keywords" content="Gang War, strike shooter, multiplayer, shooter, gang, veck io, veck io game, veck io FPS, veck io shooter">
     <meta name="robots" content="index, follow">
     <meta name="author" content="Veck.io">
-    <link rel="canonical" href="https://veckio.space/">
+    <link rel="canonical" href="https://minefunio.space/">
     <meta property="og:title" content="Gang War - Strike Shooter - Play Free Online | Veck.io">
     <meta property="og:description" content="Gang War - Strike Shooter is a gang-themed shooter game. Players join a gang and engage in territorial warfare against rival gangs. The game features various weapons, missions, and gang customization options. Play Gang War - Strike Shooter for free on Veck.io!">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://veckio.space/">
+    <meta property="og:url" content="https://minefunio.space/">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Gang War - Strike Shooter - Play Free Online | Veck.io">
     <meta name="twitter:description" content="Gang War - Strike Shooter is a gang-themed shooter game. Players join a gang and engage in territorial warfare against rival gangs. The game features various weapons, missions, and gang customization options.">
@@ -37,15 +37,19 @@
             <svg class="logo-icon" viewBox="0 0 50 50" width="45" height="45">
                 <defs>
                     <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color:#ff6b35;stop-opacity:1" />
-                        <stop offset="100%" style="stop-color:#f7c59f;stop-opacity:1" />
+                        <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#34d399;stop-opacity:1" />
                     </linearGradient>
                 </defs>
-                <polygon points="25,5 45,40 5,40" fill="none" stroke="url(#grad1)" stroke-width="3"/>
-                <line x1="25" y1="15" x2="25" y2="30" stroke="#ff6b35" stroke-width="2"/>
-                <line x1="20" y1="35" x2="30" y2="35" stroke="#ff6b35" stroke-width="2"/>
+                <rect x="8" y="12" width="34" height="26" rx="4" fill="none" stroke="url(#grad1)" stroke-width="2.5"/>
+                <circle cx="18" cy="22" r="3" fill="#10b981"/>
+                <circle cx="32" cy="22" r="3" fill="#34d399"/>
+                <circle cx="25" cy="30" r="3" fill="#6ee7b7"/>
+                <line x1="14" y1="12" x2="14" y2="8" stroke="#10b981" stroke-width="2" stroke-linecap="round"/>
+                <line x1="25" y1="12" x2="25" y2="6" stroke="#34d399" stroke-width="2" stroke-linecap="round"/>
+                <line x1="36" y1="12" x2="36" y2="8" stroke="#6ee7b7" stroke-width="2" stroke-linecap="round"/>
             </svg>
-            <span class="logo-text">Front<span class="logo-io">Wars</span></span>
+            <span class="logo-text">Mine<span class="logo-io">Fun</span></span>
         </a>
         <nav class="nav-categories">
             <a href="../categories.html?category=action" class="nav-item">Action</a>
@@ -123,10 +127,52 @@
             return shuffled;
         }
 
-        function loadRelatedGames() {
+                function loadRelatedGames() {
             const container = document.getElementById('related-games-container');
             if (!container) return;
             const allGames = [
+                ...(window.gamesData || []),
+                ...(window.actionGames || []),
+                ...(window.battleRoyaleData || []),
+                ...(window.fpsData || []),
+                ...(window.multiplayerGames || []),
+                ...(window.sniperData || [])
+            ];
+            if (allGames.length === 0) return;
+            const shuffledGames = shuffleArray(allGames).slice(0, 21);
+            container.innerHTML = '';
+            shuffledGames.forEach((game) => {
+                const card = document.createElement('div');
+                card.className = 'game-card-wide';
+                const img = document.createElement('img');
+                img.src = game.imageUrl.replace('img/', '../img/');
+                img.alt = game.name;
+                img.onerror = function() { this.src = '../img/icon/veckIo.jpg'; };
+                const title = document.createElement('div');
+                title.className = 'game-card-wide-title';
+                title.textContent = game.name;
+                card.appendChild(img);
+                card.appendChild(title);
+                card.addEventListener('click', function() {
+                    if (game.link) {
+                        window.location.href = '../' + game.link;
+                    }
+                });
+                container.appendChild(card);
+            });
+        }
+            const allGames = [
+                ...(window.gamesData || []),
+                ...(window.actionGames || []),
+                ...(window.battleRoyaleData || []),
+                ...(window.fpsData || []),
+                ...(window.multiplayerGames || []),
+                ...(window.sniperData || [])
+            ];
+            console.log('[DEBUG] allGames length:', allGames.length);
+            if (allGames.length === 0) {
+                console.log('[DEBUG] no games, returning');
+                return;
                 ...(window.gamesData || []),
                 ...(window.actionGames || []),
                 ...(window.battleRoyaleData || []),
