@@ -111,135 +111,141 @@
         </div>
         <div class="footer-copyright">© 2024 minefun io - Free Online Strategy Games. All rights reserved.</div>
     </footer>
-    <script src="../js/game_data/games.js"></script>
-    <script src="../js/game_data/action.js"></script>
-    <script src="../js/game_data/battleRoyale.js"></script>
-    <script src="../js/game_data/fps.js"></script>
-    <script src="../js/game_data/multiplayer.js"></script>
-    <script src="../js/game_data/sniper.js"></script>
-    <script>
-        function shuffleArray(array) {
-            const shuffled = [...array];
-            for (let i = shuffled.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-            }
-            return shuffled;
-        }
-
-                function loadRelatedGames() {
-            const container = document.getElementById('related-games-container');
-            if (!container) return;
-            const allGames = [
-                ...(window.gamesData || []),
-                ...(window.actionGames || []),
-                ...(window.battleRoyaleData || []),
-                ...(window.fpsData || []),
-                ...(window.multiplayerGames || []),
-                ...(window.sniperData || [])
-            ];
-            if (allGames.length === 0) return;
-            const shuffledGames = shuffleArray(allGames).slice(0, 21);
-            container.innerHTML = '';
-            shuffledGames.forEach((game) => {
-                const card = document.createElement('div');
-                card.className = 'game-card-wide';
-                const img = document.createElement('img');
-                img.src = game.imageUrl.replace('img/', '../img/');
-                img.alt = game.name;
-                img.onerror = function() { this.src = '../img/icon/minefun.svg'; };
-                const title = document.createElement('div');
-                title.className = 'game-card-wide-title';
-                title.textContent = game.name;
-                card.appendChild(img);
-                card.appendChild(title);
-                card.addEventListener('click', function() {
-                    if (game.link) {
-                        window.location.href = '../' + game.link;
-                    }
-                });
-                container.appendChild(card);
-            });
-        }
-            const allGames = [
-                ...(window.gamesData || []),
-                ...(window.actionGames || []),
-                ...(window.battleRoyaleData || []),
-                ...(window.fpsData || []),
-                ...(window.multiplayerGames || []),
-                ...(window.sniperData || [])
-            ];
-            console.log('[DEBUG] allGames length:', allGames.length);
-            if (allGames.length === 0) {
-                console.log('[DEBUG] no games, returning');
-                return;
-                ...(window.gamesData || []),
-                ...(window.actionGames || []),
-                ...(window.battleRoyaleData || []),
-                ...(window.fpsData || []),
-                ...(window.multiplayerGames || []),
-                ...(window.sniperData || [])
-            ];
-            if (allGames.length === 0) return;
-            const shuffledGames = shuffleArray(allGames).slice(0, 21);
-            container.innerHTML = '';
-            shuffledGames.forEach((game) => {
-                const card = document.createElement('div');
-                card.className = 'game-card-wide';
-                const img = document.createElement('img');
-                img.src = game.imageUrl.replace('img/', '../img/');
-                img.alt = game.name;
-                img.onerror = function() { this.src = '../img/icon/minefun.svg'; };
-                const title = document.createElement('div');
-                title.className = 'game-card-wide-title';
-                title.textContent = game.name;
-                card.appendChild(img);
-                card.appendChild(title);
-                card.addEventListener('click', function() {
-                    if (game.link) {
-                        window.location.href = '../' + game.link;
-                    }
-                });
-                container.appendChild(card);
-            });
-        }
-
-        function toggleFullscreen() {
-            const iframe = document.getElementById('game-iframe');
-            if (document.fullscreenElement) {
-                document.exitFullscreen();
-            } else {
-                iframe.requestFullscreen();
-            }
-        }
-
-        function initParticles() {
-            const container = document.getElementById('particles');
-            if (!container) return;
-            for (let i = 0; i < 30; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 20 + 's';
-                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
-                particle.style.width = (3 + Math.random() * 4) + 'px';
-                particle.style.height = particle.style.width;
-                container.appendChild(particle);
-            }
-        }
-
-        function initCursorGlow() {
-            const glow = document.getElementById('cursorGlow');
-            if (!glow) return;
-            document.addEventListener('mousemove', (e) => {
-                glow.style.left = e.clientX - 100 + 'px';
-                glow.style.top = e.clientY - 100 + 'px';
-            });
+    <script src="../js/game_data/games.js"></script>
+    <script src="../js/game_data/action.js"></script>
+    <script src="../js/game_data/battleRoyale.js"></script>
+    <script src="../js/game_data/fps.js"></script>
+    <script src="../js/game_data/multiplayer.js"></script>
+    <script src="../js/game_data/sniper.js"></script>
+    <script>
+        const CURRENT_TITLE = ("" || ((document.getElementById('current-game-title') || {}).textContent) || '').trim();
+        const CURRENT_CATEGORY = "fps";
+        const CURRENT_FOLDER = "FPS";
+
+        function shuffleArray(array) {
+            const shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
         }
-        loadRelatedGames();
-
-        initParticles();
-        initCursorGlow();
+
+        function getAllGames() {
+            return [
+                ...(window.gamesData || []),
+                ...(window.actionGames || []),
+                ...(window.battleRoyaleData || []),
+                ...(window.fpsData || []),
+                ...(window.multiplayerGames || []),
+                ...(window.sniperData || [])
+            ].filter((game) => game && game.name && game.link && game.link !== 'index.html');
+        }
+
+        function getCategoryGames() {
+            const categoryMap = {
+                action: window.actionGames || [],
+                'battle-royale': window.battleRoyaleData || [],
+                fps: window.fpsData || [],
+                multiplayer: window.multiplayerGames || [],
+                sniper: window.sniperData || []
+            };
+            return (categoryMap[CURRENT_CATEGORY] || []).filter((game) => game && game.name && game.link);
+        }
+
+        function resolveImageUrl(imageUrl) {
+            if (!imageUrl) return '../img/icon/minefun.svg';
+            if (imageUrl.startsWith('../') || imageUrl.startsWith('http://') || imageUrl.startsWith('https://') || imageUrl.startsWith('data:')) {
+                return imageUrl;
+            }
+            if (imageUrl.startsWith('img/')) {
+                return '../' + imageUrl;
+            }
+            return imageUrl;
+        }
+
+        function resolveGameLink(link) {
+            if (!link) return '';
+            if (link.startsWith('../') || link.startsWith('http://') || link.startsWith('https://')) {
+                return link;
+            }
+            return '../' + link;
+        }
+
+        function loadRelatedGames() {
+            const container = document.getElementById('related-games-container');
+            if (!container) return;
+
+            const categoryGames = getCategoryGames().filter((game) => game.name !== CURRENT_TITLE);
+            const fallbackGames = getAllGames().filter((game) => game.name !== CURRENT_TITLE);
+            const sourceGames = categoryGames.length >= 12 ? categoryGames : fallbackGames;
+            const shuffled = shuffleArray(sourceGames).slice(0, 12);
+
+            container.innerHTML = '';
+            shuffled.forEach((game) => {
+                const card = document.createElement('div');
+                card.className = 'game-card-wide';
+
+                const img = document.createElement('img');
+                img.src = resolveImageUrl(game.imageUrl);
+                img.alt = game.name;
+                img.loading = 'lazy';
+                img.onerror = function() {
+                    this.src = '../img/icon/minefun.svg';
+                };
+
+                const title = document.createElement('div');
+                title.className = 'game-card-wide-title';
+                title.textContent = game.name;
+
+                card.appendChild(img);
+                card.appendChild(title);
+                card.addEventListener('click', function() {
+                    if (game.link) {
+                        window.location.href = resolveGameLink(game.link);
+                    }
+                });
+                container.appendChild(card);
+            });
+        }
+
+        function toggleFullscreen() {
+            const iframe = document.getElementById('game-iframe');
+            if (!iframe) return;
+            if (document.fullscreenElement) {
+                document.exitFullscreen();
+            } else if (iframe.requestFullscreen) {
+                iframe.requestFullscreen();
+            }
+        }
+
+        function initParticles() {
+            const container = document.getElementById('particles');
+            if (!container) return;
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+                particle.style.width = (3 + Math.random() * 4) + 'px';
+                particle.style.height = particle.style.width;
+                container.appendChild(particle);
+            }
+        }
+
+        function initCursorGlow() {
+            const glow = document.getElementById('cursorGlow');
+            if (!glow) return;
+            document.addEventListener('mousemove', (e) => {
+                glow.style.left = e.clientX - 100 + 'px';
+                glow.style.top = e.clientY - 100 + 'px';
+            });
+        }
+
+        loadRelatedGames();
+        initParticles();
+        initCursorGlow();
     </script>
 </body>
 </html>

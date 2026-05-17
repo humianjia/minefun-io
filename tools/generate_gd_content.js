@@ -279,7 +279,7 @@ function buildPageHtml(item, categoryKey, index) {
     <script src="../js/game_data/multiplayer.js"></script>
     <script src="../js/game_data/sniper.js"></script>
     <script>
-        const CURRENT_TITLE = ${JSON.stringify(item.title)};
+        const CURRENT_TITLE = (${JSON.stringify(item.title)} || ((document.getElementById('current-game-title') || {}).textContent) || '').trim();
         const CURRENT_CATEGORY = ${JSON.stringify(categoryKey)};
         const CURRENT_FOLDER = ${JSON.stringify(config.folder)};
 
@@ -300,7 +300,7 @@ function buildPageHtml(item, categoryKey, index) {
                 ...(window.fpsData || []),
                 ...(window.multiplayerGames || []),
                 ...(window.sniperData || [])
-            ];
+            ].filter((game) => game && game.name && game.link && game.link !== 'index.html');
         }
 
         function getCategoryGames() {
@@ -311,7 +311,26 @@ function buildPageHtml(item, categoryKey, index) {
                 multiplayer: window.multiplayerGames || [],
                 sniper: window.sniperData || []
             };
-            return categoryMap[CURRENT_CATEGORY] || [];
+            return (categoryMap[CURRENT_CATEGORY] || []).filter((game) => game && game.name && game.link);
+        }
+
+        function resolveImageUrl(imageUrl) {
+            if (!imageUrl) return '../img/icon/minefun.svg';
+            if (imageUrl.startsWith('../') || imageUrl.startsWith('http://') || imageUrl.startsWith('https://') || imageUrl.startsWith('data:')) {
+                return imageUrl;
+            }
+            if (imageUrl.startsWith('img/')) {
+                return '../' + imageUrl;
+            }
+            return imageUrl;
+        }
+
+        function resolveGameLink(link) {
+            if (!link) return '';
+            if (link.startsWith('../') || link.startsWith('http://') || link.startsWith('https://')) {
+                return link;
+            }
+            return '../' + link;
         }
 
         function loadRelatedGames() {
@@ -329,7 +348,7 @@ function buildPageHtml(item, categoryKey, index) {
                 card.className = 'game-card-wide';
 
                 const img = document.createElement('img');
-                img.src = game.imageUrl || '../img/icon/minefun.svg';
+                img.src = resolveImageUrl(game.imageUrl);
                 img.alt = game.name;
                 img.loading = 'lazy';
                 img.onerror = function() {
@@ -344,7 +363,7 @@ function buildPageHtml(item, categoryKey, index) {
                 card.appendChild(title);
                 card.addEventListener('click', function() {
                     if (game.link) {
-                        window.location.href = '../' + game.link;
+                        window.location.href = resolveGameLink(game.link);
                     }
                 });
                 container.appendChild(card);

@@ -120,7 +120,7 @@
     <script src="../js/game_data/multiplayer.js"></script>
     <script src="../js/game_data/sniper.js"></script>
     <script>
-        const CURRENT_TITLE = "Sniper Ultimate Assassin 2";
+        const CURRENT_TITLE = ("Sniper Ultimate Assassin 2" || ((document.getElementById('current-game-title') || {}).textContent) || '').trim();
         const CURRENT_CATEGORY = "sniper";
         const CURRENT_FOLDER = "Sniper";
 
@@ -141,7 +141,7 @@
                 ...(window.fpsData || []),
                 ...(window.multiplayerGames || []),
                 ...(window.sniperData || [])
-            ];
+            ].filter((game) => game && game.name && game.link && game.link !== 'index.html');
         }
 
         function getCategoryGames() {
@@ -152,7 +152,26 @@
                 multiplayer: window.multiplayerGames || [],
                 sniper: window.sniperData || []
             };
-            return categoryMap[CURRENT_CATEGORY] || [];
+            return (categoryMap[CURRENT_CATEGORY] || []).filter((game) => game && game.name && game.link);
+        }
+
+        function resolveImageUrl(imageUrl) {
+            if (!imageUrl) return '../img/icon/minefun.svg';
+            if (imageUrl.startsWith('../') || imageUrl.startsWith('http://') || imageUrl.startsWith('https://') || imageUrl.startsWith('data:')) {
+                return imageUrl;
+            }
+            if (imageUrl.startsWith('img/')) {
+                return '../' + imageUrl;
+            }
+            return imageUrl;
+        }
+
+        function resolveGameLink(link) {
+            if (!link) return '';
+            if (link.startsWith('../') || link.startsWith('http://') || link.startsWith('https://')) {
+                return link;
+            }
+            return '../' + link;
         }
 
         function loadRelatedGames() {
@@ -170,7 +189,7 @@
                 card.className = 'game-card-wide';
 
                 const img = document.createElement('img');
-                img.src = game.imageUrl || '../img/icon/minefun.svg';
+                img.src = resolveImageUrl(game.imageUrl);
                 img.alt = game.name;
                 img.loading = 'lazy';
                 img.onerror = function() {
@@ -185,7 +204,7 @@
                 card.appendChild(title);
                 card.addEventListener('click', function() {
                     if (game.link) {
-                        window.location.href = '../' + game.link;
+                        window.location.href = resolveGameLink(game.link);
                     }
                 });
                 container.appendChild(card);
@@ -227,7 +246,6 @@
         }
 
         loadRelatedGames();
-
         initParticles();
         initCursorGlow();
     </script>

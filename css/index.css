@@ -497,67 +497,6 @@ body {
 }
 
 /* ============================================
-   广告位样式
-   ============================================ */
-.ad-container {
-    background: var(--secondary-bg);
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-secondary);
-    font-size: 12px;
-    text-align: center;
-    min-height: 90px;
-    margin-bottom: 20px;
-}
-
-.ad-container-horizontal {
-    width: 100%;
-    min-height: 100px;
-    padding: 20px;
-}
-
-.ad-container-square {
-    aspect-ratio: 1/1;
-    min-height: unset;
-}
-
-.ad-container-sidebar {
-    margin-bottom: 0;
-}
-
-.ad-container-sidebar:first-child {
-    margin-bottom: 20px;
-}
-
-.ad-label {
-    position: absolute;
-    top: 8px;
-    left: 8px;
-    font-size: 9px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--text-secondary);
-    opacity: 0.5;
-}
-
-.ad-wrapper {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* iframe下方广告 */
-.game-showcase + .ad-container {
-    margin-top: 24px;
-    margin-bottom: 32px;
-}
-
-/* ============================================
    相关游戏网格 - 全宽布局
    ============================================ */
 .related-games {
