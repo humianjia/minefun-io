@@ -1,222 +1,187 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-CN1TBFYMZ5"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-CN1TBFYMZ5');
-</script>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MineFun io - Free Online H5 Games | Browser Game Platform</title>
-    <meta name="description" content="MineFun io (minefunio.space) - Play free online H5 games! Discover strategy, action, shooter, multiplayer and more browser games. No download needed. Start playing instantly!">
-    <meta name="keywords" content="minefun io, minefun.io, minefunio.space, h5 games, h5 game online, free browser games, io games, multiplayer games, strategy games, action games, shooter games, play online games">
-    <meta name="robots" content="index, follow">
-    <meta name="author" content="MineFun">
-    <link rel="canonical" href="https://minefunio.space/">
-    <meta property="og:title" content="MineFun io - Free Online H5 Games on minefunio.space">
-    <meta property="og:description" content="MineFun io - Play free H5 games on minefunio.space! Strategy, action, shooter, multiplayer games. No download, instant play!">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://minefunio.space/">
-    <meta property="og:image" content="https://minefunio.space/og-image.svg">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="MineFun.io - Free Online H5 Games">
-    <meta name="twitter:description" content="MineFun.io - Play free online H5 games! No download required.">
-    <meta name="twitter:image" content="https://minefunio.space/og-image.svg">
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/index.css">
-</head>
-<body>
-    <!-- 粒子背景 -->
-    <div class="particles" id="particles"></div>
-    <!-- 鼠标跟随光效 -->
-    <div class="cursor-glow" id="cursorGlow"></div>
-    <!-- 顶部导航 -->
-    <header class="header">
-        <div class="logo">
-            <svg class="logo-icon" viewBox="0 0 50 50" width="45" height="45">
-                <defs>
-                    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
-                        <stop offset="100%" style="stop-color:#34d399;stop-opacity:1" />
-                    </linearGradient>
-                </defs>
-                <rect x="8" y="12" width="34" height="26" rx="4" fill="none" stroke="url(#grad1)" stroke-width="2.5"/>
-                <circle cx="18" cy="22" r="3" fill="#10b981"/>
-                <circle cx="32" cy="22" r="3" fill="#34d399"/>
-                <circle cx="25" cy="30" r="3" fill="#6ee7b7"/>
-                <line x1="14" y1="12" x2="14" y2="8" stroke="#10b981" stroke-width="2" stroke-linecap="round"/>
-                <line x1="25" y1="12" x2="25" y2="6" stroke="#34d399" stroke-width="2" stroke-linecap="round"/>
-                <line x1="36" y1="12" x2="36" y2="8" stroke="#6ee7b7" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-            <span class="logo-text">Mine<span class="logo-io">Fun</span></span>
-        </div>
-        <nav class="nav-categories"> 
-            <a href="categories.html?category=action" class="nav-item">Action</a>
-            <a href="categories.html?category=battle-royale" class="nav-item">Battle</a>
-            <a href="categories.html?category=fps" class="nav-item">Shooter</a>
-            <a href="categories.html?category=multiplayer" class="nav-item">Multiplayer</a>
-            <a href="categories.html?category=sniper" class="nav-item">Sniper</a>
-        </nav>
-        <div class="search-bar">
-            <input type="text" placeholder="Search games...">
-            <i class="fas fa-search"></i>
-        </div>
-    </header>
-
-    <!-- 主容器 -->
-    <div class="main-container">
-        <!-- 中间主内容 -->
-        <main class="main-content">
-            <!-- 游戏展示区 -->
-            <div class="game-showcase">
-                <div class="game-frame">
-                    <iframe id="game-iframe" src="" allowfullscreen></iframe> 
-                </div>
-                <div class="game-controls">
-                    <div class="game-title-section">
-                        <img src="" id="game-icon" class="game-icon" alt="Icon">
-                        <span class="game-title" id="current-game-title">Gummy merge</span>
-                    </div>
-                    <div class="game-actions">
-                        <i class="fas fa-expand" onclick="toggleFullscreen()"></i>
-                    </div>
-                </div>
-            </div>
-
-            <!-- iframe下方广告位 -->
-            <div class="ad-container ad-container-horizontal">
-            </div>
-
-            <!-- 相关推荐 -->
-            <div class="related-games">
-                <h3 class="section-title">Popular Shooter Games</h3>
-                <div class="games-grid" id="related-games-container">
-                    <!-- 21个游戏卡片将由JavaScript动态生成 -->
-                </div>
-            </div>
-
-            <!-- 内容区域 - 游戏介绍 -->
-            <div class="content-section">
-                <div class="game-info">
-                    <div class="info-header">Welcome to FrontWars.io - A fast-paced multiplayer real-time strategy game where dozens of players battle for map dominance. Conquer territories, build cities, construct ports, and forge alliances. Victory comes when you control 72% of the map!</div>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CN1TBFYMZ5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-CN1TBFYMZ5');
+</script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>minefun io - Free Online H5 Games | Browser Game Platform</title>
+    <meta name="description" content="minefun io - Play free online H5 games! Discover action, battle royale, shooter, multiplayer, and sniper browser games with instant play and no download required.">
+    <meta name="keywords" content="minefun io, minefun io, minefunio.space, h5 games, h5 game online, free browser games, io games, multiplayer games, strategy games, action games, shooter games, play online games">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="minefun io">
+    <link rel="canonical" href="https://minefunio.space/">
+    <meta property="og:title" content="minefun io - Free Online H5 Games on minefunio.space">
+    <meta property="og:description" content="minefun io - Play free H5 games on minefunio.space! Action, shooter, multiplayer, sniper, and battle royale games with no download required.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://minefunio.space/">
+    <meta property="og:image" content="https://minefunio.space/og-image.svg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="minefun io - Free Online H5 Games">
+    <meta name="twitter:description" content="minefun io - Play free online H5 games! No download required.">
+    <meta name="twitter:image" content="https://minefunio.space/og-image.svg">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <!-- 粒子背景 -->
+    <div class="particles" id="particles"></div>
+    <!-- 鼠标跟随光效 -->
+    <div class="cursor-glow" id="cursorGlow"></div>
+    <!-- 顶部导航 -->
+    <header class="header">
+        <div class="logo">
+            <svg class="logo-icon" viewBox="0 0 50 50" width="45" height="45">
+                <defs>
+                    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#34d399;stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+                <rect x="8" y="12" width="34" height="26" rx="4" fill="none" stroke="url(#grad1)" stroke-width="2.5"/>
+                <circle cx="18" cy="22" r="3" fill="#10b981"/>
+                <circle cx="32" cy="22" r="3" fill="#34d399"/>
+                <circle cx="25" cy="30" r="3" fill="#6ee7b7"/>
+                <line x1="14" y1="12" x2="14" y2="8" stroke="#10b981" stroke-width="2" stroke-linecap="round"/>
+                <line x1="25" y1="12" x2="25" y2="6" stroke="#34d399" stroke-width="2" stroke-linecap="round"/>
+                <line x1="36" y1="12" x2="36" y2="8" stroke="#6ee7b7" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <span class="logo-text">minefun <span class="logo-io">io</span></span>
+        </div>
+        <nav class="nav-categories"> 
+            <a href="categories.html?category=action" class="nav-item">Action</a>
+            <a href="categories.html?category=battle-royale" class="nav-item">Battle</a>
+            <a href="categories.html?category=fps" class="nav-item">Shooter</a>
+            <a href="categories.html?category=multiplayer" class="nav-item">Multiplayer</a>
+            <a href="categories.html?category=sniper" class="nav-item">Sniper</a>
+        </nav>
+        <div class="search-bar">
+            <input type="text" placeholder="Search games...">
+            <i class="fas fa-search"></i>
+        </div>
+    </header>
+
+    <!-- 主容器 -->
+    <div class="main-container">
+        <!-- 中间主内容 -->
+        <main class="main-content">
+            <!-- 游戏展示区 -->
+            <div class="game-showcase">
+                <div class="game-frame">
+                    <iframe id="game-iframe" src="" allowfullscreen></iframe> 
+                </div>
+                <div class="game-controls">
+                    <div class="game-title-section">
+                        <img src="" id="game-icon" class="game-icon" alt="Icon">
+                        <span class="game-title" id="current-game-title">Gummy merge</span>
+                    </div>
+                    <div class="game-actions">
+                        <i class="fas fa-expand" onclick="toggleFullscreen()"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- iframe下方广告位 -->
+            <div class="ad-container ad-container-horizontal">
+            </div>
+
+            <!-- 相关推荐 -->
+            <div class="related-games">
+                <h3 class="section-title">Popular Shooter Games</h3>
+                <div class="games-grid" id="related-games-container">
+                    <!-- 21个游戏卡片将由JavaScript动态生成 -->
+                </div>
+            </div>
+
+            <!-- 内容区域 - 游戏介绍 -->
+            <div class="content-section">
+                <div class="game-info">
+                    <div class="info-header">Welcome to minefun io - a fast, browser-based game hub packed with free action, shooter, multiplayer, sniper, and battle royale games.</div>
                     <div class="info-content">
-                        <h2>WHAT IS FRONTWARS.IO?</h2>
-                        <p><strong>FrontWars.io</strong> is a fast-paced multiplayer real-time strategy game where dozens of players fight for map dominance in real time. You begin with a small base and expand by conquering neighbors, constructing cities, walls, and ports, and balancing your resources.</p>
-                        <p>As an <strong>.io strategy game</strong>, FrontWars.io combines classic territory conquest gameplay with modern multiplayer mechanics. Forge alliances or drop bombs to outmaneuver rivals, battling across both land and sea. Every tactical decision is critical in your quest for total domination.</p>
+                        <h2>WHAT IS MINEFUN IO?</h2>
+                        <p><strong>minefun io</strong> is a free online H5 game platform where you can jump into browser games instantly. The site focuses on quick-loading iframe games sourced from GameDistribution and organized into action, battle royale, shooter, multiplayer, and sniper categories.</p>
+                        <p>Instead of downloads or installs, you can browse the catalog, open a game page, and start playing right away. Whether you want arcade runners, tank battles, sniper missions, or competitive multiplayer matches, minefun io keeps everything in one place.</p>
 
-                        <h3>FRONTWARS.IO GAMEPLAY</h3>
-                        <p>In FrontWars.io, you start by selecting a position on the map. From this small base, you expand by clicking on adjacent territories. But expansion isn't without risk - each expansion spreads your military thin, making existing territories more vulnerable to attack.</p>
-                        <p>The <strong>balance between expansion and defense</strong> is the key to success. You need to balance population between troops and workers, make choices between economic development and military investment. Every decision affects your chances of victory.</p>
+                        <h3>INSTANT PLAY</h3>
+                        <p>Every featured game opens directly inside the page with an embedded iframe, so players can launch titles in seconds. There is no signup wall, no extra launcher, and no delay between discovering a game and trying it.</p>
+                        <p>The homepage also rotates recommended titles from across the full catalog, making it easy to discover something new every visit.</p>
 
-                        <h3>FRONTWARS.IO BUILDINGS</h3>
+                        <h3>GAME CATEGORIES</h3>
                         <ul>
-                            <li><strong>City:</strong> Increases maximum population by 25,000 - essential for building a powerful empire</li>
-                            <li><strong>Defense Post:</strong> Makes it more difficult for enemies to invade your territory, slows enemy attacks, and increases enemy losses</li>
-                            <li><strong>Port:</strong> Essential for naval power and trade - allows building Warships and trading with other ports</li>
-                            <li><strong>Missile Silo:</strong> Launches devastating atomic, hydrogen, or MIRV bombs on enemies (right-click to use)</li>
-                            <li><strong>SAM Launcher:</strong> Intercepts enemy missiles with different success rates depending on bomb type</li>
+                            <li><strong>Action:</strong> Endless runners, survival challenges, and fast arcade gameplay</li>
+                            <li><strong>Battle Royale:</strong> Last-player-standing battles, pixel battlegrounds, and royale-style arenas</li>
+                            <li><strong>Shooter:</strong> Gun games, tactical firefights, zombie defense, and combat-focused action</li>
+                            <li><strong>Multiplayer:</strong> Tank duels, sports matchups, and online PvP experiences</li>
+                            <li><strong>Sniper:</strong> Precision shooting missions, assassin challenges, and hunting games</li>
                         </ul>
 
-                        <h3>FRONTWARS.IO UNITS</h3>
+                        <h3>WHY PLAY HERE</h3>
                         <ul>
-                            <li><strong>Warship:</strong> Powerful naval unit to attack coastal territories - patrols water and intercepts enemy trade ships</li>
-                            <li><strong>Destroyer:</strong> Captures enemy trade ships and generates gold - requires a port</li>
-                            <li><strong>Atom Bomb:</strong> Causes localized destruction to enemy territories</li>
-                            <li><strong>Hydrogen Bomb:</strong> More powerful and destructive than Atom Bomb - hits larger areas</li>
-                            <li><strong>MIRV:</strong> Splits to hit multiple points, affecting only the targeted player</li>
-                        </ul>
-
-                        <h3>FRONTWARS.IO ALLIANCES</h3>
-                        <ul>
-                            <li><strong>Form Alliances:</strong> Send or receive troops and gold to help allies under attack or building up strength</li>
-                            <li><strong>Trade Routes:</strong> Control ports to establish trade routes for passive gold income</li>
-                            <li><strong>Betrayal:</strong> Betraying an ally ends the alliance, pauses trade for a few minutes, and marks you as a traitor for 30 seconds</li>
-                            <li><strong>Diplomacy:</strong> Bots and human players react differently to your actions - diplomacy matters in achieving victory</li>
-                        </ul>
-
-                        <h3>FRONTWARS.IO KEY FEATURES</h3>
-                        <ul>
-                            <li><strong>Real-Time Multiplayer:</strong> Up to 143 players per lobby in intense real-time battles</li>
-                            <li><strong>Map Conquest:</strong> Strategic map expansion gameplay - control 72% to win</li>
-                            <li><strong>Land & Sea Warfare:</strong> Build cities, walls, ports, and deploy naval forces</li>
-                            <li><strong>Resource Management:</strong> Balance troops, workers, and gold for optimal growth</li>
-                            <li><strong>Alliance System:</strong> Form alliances, establish trade routes, or betray rivals</li>
-                            <li><strong>Missile Warfare:</strong> Deploy Atom Bombs, Hydrogen Bombs, and MIRVs for devastating attacks</li>
-                            <li><strong>Global Leaderboards:</strong> Compete with players worldwide by land, troops, and gold</li>
-                            <li><strong>Cross-Platform:</strong> Play on Browser, Mobile, and Steam</li>
-                        </ul>
-
-                        <h3>FRONTWARS.IO CONTROLS</h3>
-                        <ul>
-                            <li><strong>Move Camera:</strong> W, A, S, D</li>
-                            <li><strong>Zoom:</strong> Q / E or Scroll Wheel</li>
-                            <li><strong>Select & Attack:</strong> Left Click to select, drag to attack adjacent territories</li>
-                            <li><strong>Radial Menu:</strong> Right Click to open build menu, attack, send boats, or request alliances</li>
-                            <li><strong>Center Camera:</strong> C - center camera on your territory</li>
-                            <li><strong>Alternate View:</strong> Space - toggle between terrain and country view</li>
-                            <li><strong>Attack Ratio:</strong> Shift + Left Click or Bottom Left Slider to adjust troops sent</li>
-                            <li><strong>Quick Chat:</strong> Use preset messages and emojis to communicate with allies and opponents</li>
+                            <li><strong>No download required:</strong> Play directly in your browser on desktop or mobile</li>
+                            <li><strong>Curated categories:</strong> Browse games by play style instead of digging through giant lists</li>
+                            <li><strong>Fast discovery:</strong> Related game sections help players move between similar titles</li>
+                            <li><strong>Simple access:</strong> Open a detail page, hit play, and jump into the game immediately</li>
                         </ul>
                     </div>
-                    <div class="tags">
-                        <span class="tag"><i class="fas fa-globe"></i> FRONTWARS IO</span>
-                        <span class="tag"><i class="fas fa-chess"></i> STRATEGY</span>
-                        <span class="tag"><i class="fas fa-flag"></i> CONQUEST</span>
-                        <span class="tag"><i class="fas fa-users"></i> MULTIPPLAYER</span>
-                        <span class="tag"><i class="fas fa-shield-alt"></i> ALLIANCE</span>
-                        <span class="tag"><i class="fas fa-ship"></i> NAVAL</span>
-                        <span class="tag"><i class="fas fa-bomb"></i> WARFARE</span>
-                        <span class="tag"><i class="fas fa-rocket"></i> MISSILES</span>
+                    <div class="tags">
+                        <span class="tag"><i class="fas fa-globe"></i> MINEFUN IO</span>
+                        <span class="tag"><i class="fas fa-fist-raised"></i> ACTION</span>
+                        <span class="tag"><i class="fas fa-crosshairs"></i> SHOOTER</span>
+                        <span class="tag"><i class="fas fa-users"></i> MULTIPLAYER</span>
+                        <span class="tag"><i class="fas fa-bullseye"></i> SNIPER</span>
+                        <span class="tag"><i class="fas fa-skull"></i> BATTLE ROYALE</span>
                     </div>
                 </div>
             </div>
-        </main>
-
-        <!-- 侧边栏 -->
-        <aside class="sidebar">
-            <div class="ad-container ad-container-sidebar" style="min-height: 250px;">
-            </div>
-
-            <div class="sidebar-section">
-                <h3 class="sidebar-title">More Games</h3>
-                <div class="games-grid-sidebar" id="sidebar-games-container">
-                </div>
-            </div>
-
-            <div class="ad-container ad-container-sidebar" style="min-height: 250px;">
-            </div>
-        </aside>
-    </div>
-
-    <!-- 页脚 -->
-    <footer class="footer">
-        <div class="footer-links">
-            <a href="../index.html">About FrontWars.io</a>
-            <a href="../contact.html">Contact Us</a>
-            <a href="../contact.html">DMCA</a>
-            <a href="../privacy-policy.html">Privacy Policy</a>
-            <a href="../terms-of-service.html">Terms of Service</a>
-            <a href="../cookie-policy.html">Cookie Policy</a>
-        </div>
-        <div class="footer-copyright">© 2024 FrontWars.io - Free Online Strategy Games. All rights reserved.</div>
-    </footer>
-
-    <!-- 游戏数据 -->
-    <script src="js/game_data/games.js"></script>
-    <script src="js/game_data/action.js"></script>
-    <script src="js/game_data/battleRoyale.js"></script>
-    <script src="js/game_data/fps.js"></script>
-    <script src="js/game_data/multiplayer.js"></script>
-    <script src="js/game_data/sniper.js"></script>
-    <!-- 主脚本 -->
-    <script src="init.js"></script>
-</body>
+        </main>
+
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <div class="ad-container ad-container-sidebar" style="min-height: 250px;">
+            </div>
+
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">More Games</h3>
+                <div class="games-grid-sidebar" id="sidebar-games-container">
+                </div>
+            </div>
+
+            <div class="ad-container ad-container-sidebar" style="min-height: 250px;">
+            </div>
+        </aside>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="index.html">About minefun io</a>
+            <a href="contact.html">Contact Us</a>
+            <a href="contact.html">DMCA</a>
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="terms-of-service.html">Terms of Service</a>
+            <a href="cookie-policy.html">Cookie Policy</a>
+        </div>
+        <div class="footer-copyright">© 2024 minefun io - Free Online H5 Games. All rights reserved.</div>
+    </footer>
+
+    <!-- 游戏数据 -->
+    <script src="js/game_data/games.js"></script>
+    <script src="js/game_data/action.js"></script>
+    <script src="js/game_data/battleRoyale.js"></script>
+    <script src="js/game_data/fps.js"></script>
+    <script src="js/game_data/multiplayer.js"></script>
+    <script src="js/game_data/sniper.js"></script>
+    <!-- 主脚本 -->
+    <script src="init.js"></script>
+</body>
 </html>
